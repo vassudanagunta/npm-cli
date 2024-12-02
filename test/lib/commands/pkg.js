@@ -759,3 +759,21 @@ t.test('fix', async t => {
     'fixes package.json issues'
   )
 })
+
+t.test('sort', async t => {
+  const { pkg, readPackageJson } = await mockNpm(t, {
+    prefixDir: {
+      'package.json': JSON.stringify({
+        version: '1.1.1',
+        name: 'foo',
+      }),
+    },
+  })
+
+  await pkg('sort')
+  t.strictSame(
+    readPackageJson(),
+    { name: 'foo', version: '1.1.1' },
+    'sorts package.json fields'
+  )
+})

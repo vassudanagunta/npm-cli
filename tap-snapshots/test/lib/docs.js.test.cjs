@@ -3727,6 +3727,7 @@ npm pkg delete <key> [<key> ...]
 npm pkg set [<array>[<index>].<key>=<value> ...]
 npm pkg set [<array>[].<key>=<value> ...]
 npm pkg fix
+npm pkg sort
 
 Options:
 [-f|--force] [--json]
@@ -3742,6 +3743,7 @@ npm pkg delete <key> [<key> ...]
 npm pkg set [<array>[<index>].<key>=<value> ...]
 npm pkg set [<array>[].<key>=<value> ...]
 npm pkg fix
+npm pkg sort
 \`\`\`
 
 #### \`force\`
