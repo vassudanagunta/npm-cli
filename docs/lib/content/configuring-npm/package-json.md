@@ -1221,7 +1221,7 @@ When this field is undefined it is interpreted as the value `commonjs`.
 
 See TypeScript documentation on `types` [here](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html).
 
-Used by npmjs.org to display `ts` badge for a given package.
+Used by [npmjs.com](https://npmjs.com/typescript) to display `ts` badge for a given package.
 
 ### typings
 
