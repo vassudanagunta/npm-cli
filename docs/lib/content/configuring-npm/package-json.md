@@ -225,11 +225,11 @@ Or you can shorten that all into a single string, and npm will parse it for you:
 
 Contributors consists of an an array of [authors](#author).
 
-Both email and url are optional either way.
-
 ### maintainers (deprecated)
 
-The `maintainers` when set in package.json is not awknowledged or used by npm. `maintainers` is used internally by npm on package-like payloads.
+Use [`contributors`](#contributors) instead.
+
+The `maintainers` field in package.json is ignored by npm. It is only used internally by npm for package payloads.
 
 ### funding
 
