@@ -15,6 +15,8 @@ settings described in [`config`](/using-npm/config).
 
 ### name
 
+> See Node.js documentation on `name` [here](https://nodejs.org/api/packages.html#name).
+
 If you plan to publish your package, the *most* important things in your
 package.json are the name and version fields as they will be required. The
 name and version together form an identifier that is assumed to be
@@ -195,11 +197,13 @@ unpublished package under any terms:
 
 Consider also setting `"private": true` to prevent accidental publication.
 
-### people fields: author, contributors
+### licenses (deprecated)
 
-The "author" is one person.  "contributors" is an array of people.  A
-"person" is an object with a "name" field and optionally "url" and "email",
-like this:
+See [license](#license).
+
+### author
+
+The "author" is one person. A "person" is an object with a "name" field and optionally "url" and "email", like this:
 
 ```json
 {
@@ -209,8 +213,7 @@ like this:
 }
 ```
 
-Or you can shorten that all into a single string, and npm will parse it for
-you:
+Or you can shorten that all into a single string, and npm will parse it for you:
 
 ```json
 {
@@ -218,9 +221,15 @@ you:
 }
 ```
 
+### contributors
+
+Contributors consists of an an array of [authors](#author).
+
 Both email and url are optional either way.
 
-npm also sets a top-level "maintainers" field with your npm user info.
+### maintainers (deprecated)
+
+The `maintainers` when set in package.json is not awknowledged or used by npm. `maintainers` is used internally by npm on package-like payloads.
 
 ### funding
 
@@ -341,9 +350,15 @@ These can not be included.
 
 ### exports
 
-The "exports" provides a modern alternative to "main" allowing multiple entry points to be defined, conditional entry resolution support between environments, and preventing any other entry points besides those defined in "exports". This encapsulation allows module authors to clearly define the public interface for their package. For more details see the [node.js documentation on package entry points](https://nodejs.org/api/packages.html#package-entry-points)
+See Node.js documentation on `exports` [here](https://nodejs.org/api/packages.html#exports).
+
+### imports
+
+See Node.js documentation on `imports` [here](https://nodejs.org/api/packages.html#imports).
 
 ### main
+
+> See Node.js documentation on `main` [here](https://nodejs.org/api/packages.html#main).
 
 The main field is a module ID that is the primary entry point to your
 program.  That is, if your package is named `foo`, and a user installs it,
@@ -893,12 +908,15 @@ This file contains the dependencies `renderized` and `super-streams` which
 can be installed in a new project by executing `npm install
 awesome-web-framework-1.0.0.tgz`.  Note that the package names do not
 include any versions, as that information is specified in `dependencies`.
-
 If this is spelled `"bundledDependencies"`, then that is also honored.
 
 Alternatively, `"bundleDependencies"` can be defined as a boolean value. A
 value of `true` will bundle all dependencies, a value of `false` will bundle
 none.
+
+### bundledDependencies (deprecated)
+
+Is honored by npm as alias of [bundleDependcies](#bundleDependencies).
 
 ### optionalDependencies
 
@@ -1190,6 +1208,24 @@ default.
 
 See [`config`](/using-npm/config) to see the list of config options that
 can be overridden.
+
+### type
+
+> See Node.js documentation on `type` [here](https://nodejs.org/api/packages.html#type).
+
+Property that governs if Node.js will interpret package as [CommonJS (cjs)](https://nodejs.org/docs/latest/api/modules.html#modules-commonjs-modules) or [ECMAScript Module (esm)](https://nodejs.org/docs/latest/api/esm.html).
+
+When this field is undefined it is interpreted as the value `commonjs`.
+
+### types
+
+See TypeScript documentation on `types` [here](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html).
+
+Used by npmjs.org to display `ts` badege for a given package.
+
+### typings
+
+Alias of [types](#types).
 
 ### workspaces
 
