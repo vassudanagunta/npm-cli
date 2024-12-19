@@ -920,5 +920,16 @@ t.test('latest dist tag', (t) => {
     await npm.exec('publish', [])
   })
 
+  /* eslint-disable-next-line max-len */
+  t.test('ALLOWS publish when latest is HIGHER than publishing version and flag --force', async t => {
+    const version = '99.0.0'
+    const { npm, registry } = await loadNpmWithRegistry(t, {
+      ...init(version),
+      argv: ['--force'],
+    })
+    registry.publish(pkg, { noGet: true, packuments })
+    await npm.exec('publish', [])
+  })
+
   t.end()
 })
