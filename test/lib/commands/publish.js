@@ -886,7 +886,17 @@ t.test('latest dist tag', (t) => {
     await t.rejects(async () => {
       await npm.exec('publish', [])
       /* eslint-disable-next-line max-len */
-    }, new Error('Cannot implicitly apply the "latest" tag because published version 100.0.0 is higher than the new version 99.0.0. You must specify a tag using --tag.'))
+    }, new Error('Cannot implicitly apply the "latest" tag because published version 100.0.0 is higher than or equal to the new version 99.0.0. You must specify a tag using --tag.'))
+  })
+
+  t.test('PREVENTS publish when latest version is SAME than publishing version', async t => {
+    const version = '100.0.0'
+    const { npm, registry } = await loadNpmWithRegistry(t, init(version))
+    registry.publish(pkg, { noPut: true, packuments })
+    await t.rejects(async () => {
+      await npm.exec('publish', [])
+      /* eslint-disable-next-line max-len */
+    }, new Error('Cannot implicitly apply the "latest" tag because published version 100.0.0 is higher than or equal to the new version 100.0.0. You must specify a tag using --tag.'))
   })
 
   t.test('ALLOWS publish when latest is HIGHER than publishing version and flag', async t => {
