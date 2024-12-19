@@ -854,6 +854,28 @@ t.test('prerelease dist tag', (t) => {
     await npm.exec('publish', [])
   })
 
+  t.test('does not abort when prerelease and force', async t => {
+    const packageJson = {
+      ...pkgJson,
+      version: '1.0.0-0',
+      publishConfig: { registry: alternateRegistry },
+    }
+    const { npm, registry } = await loadNpmWithRegistry(t, {
+      config: {
+        loglevel: 'silent',
+        force: true,
+        [`${alternateRegistry.slice(6)}/:_authToken`]: 'test-other-token',
+      },
+      prefixDir: {
+        'package.json': JSON.stringify(packageJson, null, 2),
+      },
+      registry: alternateRegistry,
+      authorization: 'test-other-token',
+    })
+    registry.publish(pkg, { packageJson })
+    await npm.exec('publish', [])
+  })
+
   t.end()
 })
 
