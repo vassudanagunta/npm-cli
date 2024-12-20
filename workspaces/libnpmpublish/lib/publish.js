@@ -156,7 +156,7 @@ const buildMetadata = async (registry, manifest, tarballData, spec, opts) => {
       provenanceBundle = await verifyProvenance(subject, provenanceFile)
     }
 
-    provenanceBundle.mediaType = 'application/vnd.dev.sigstore.bundle+json;version=0.2'
+    provenanceBundle.mediaType = 'application/vnd.dev.sigstore.bundle+json;version=0.3'
     const serializedBundle = JSON.stringify(provenanceBundle)
     console.log(serializedBundle)
     root._attachments[provenanceBundleName] = {
