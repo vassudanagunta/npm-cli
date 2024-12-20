@@ -137,7 +137,7 @@ const buildMetadata = async (registry, manifest, tarballData, spec, opts) => {
 
     if (provenance === true) {
       await ensureProvenanceGeneration(registry, spec, opts)
-      console.log('semi legacy compat')
+      console.log('no legacy compat')
       provenanceBundle = await generateProvenance([subject], { legacyCompatibility: false, ...opts })
 
       /* eslint-disable-next-line max-len */
@@ -156,7 +156,7 @@ const buildMetadata = async (registry, manifest, tarballData, spec, opts) => {
       provenanceBundle = await verifyProvenance(subject, provenanceFile)
     }
 
-    provenanceBundle.mediaType = 'application/vnd.dev.sigstore.bundle+json;version=0.3'
+    //provenanceBundle.mediaType = 'application/vnd.dev.sigstore.bundle+json;version=0.3'
     const serializedBundle = JSON.stringify(provenanceBundle)
     console.log(serializedBundle)
     root._attachments[provenanceBundleName] = {
