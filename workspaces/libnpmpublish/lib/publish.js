@@ -137,7 +137,8 @@ const buildMetadata = async (registry, manifest, tarballData, spec, opts) => {
 
     if (provenance === true) {
       await ensureProvenanceGeneration(registry, spec, opts)
-      provenanceBundle = await generateProvenance([subject], { legacyCompatibility: true, ...opts })
+      console.log('no legacy compat')
+      provenanceBundle = await generateProvenance([subject], { legacyCompatibility: false, ...opts })
 
       /* eslint-disable-next-line max-len */
       log.notice('publish', `Signed provenance statement with source and build information from ${ciInfo.name}`)
@@ -156,6 +157,7 @@ const buildMetadata = async (registry, manifest, tarballData, spec, opts) => {
     }
 
     const serializedBundle = JSON.stringify(provenanceBundle)
+    console.log(serializedBundle)
     root._attachments[provenanceBundleName] = {
       content_type: provenanceBundle.mediaType,
       data: serializedBundle,
