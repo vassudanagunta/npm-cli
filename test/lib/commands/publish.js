@@ -898,6 +898,15 @@ t.test('latest dist tag', (t) => {
     }, new Error('You cannot publish over the previously published versions: 100.0.0.'))
   })
 
+  t.test('PREVENTS publish when publishing version EXISTS ALREADY in the registry', async t => {
+    const version = '50.0.0'
+    const { npm, registry } = await loadNpmWithRegistry(t, init(version))
+    registry.publish(pkg, { noPut: true, packuments })
+    await t.rejects(async () => {
+      await npm.exec('publish', [])
+    }, new Error('You cannot publish over the previously published versions: 50.0.0.'))
+  })
+
   t.test('ALLOWS publish when latest is HIGHER than publishing version and flag', async t => {
     const version = '99.0.0'
     const { npm, registry } = await loadNpmWithRegistry(t, {
