@@ -18,16 +18,16 @@ To load the completions into your current shell:
 source <(npm completion)
 ```
 
-Adding its output to
+Adding this to
 your ~/.bashrc or ~/.zshrc will make the completions available
 everywhere:
 
 ```bash
-npm completion >> ~/.bashrc
-npm completion >> ~/.zshrc
+echo 'source <(npm completion)' >> ~/.bashrc
+echo 'source <(npm completion)' >> ~/.zshrc
 ```
 
-You may of course also pipe the output of `npm completion` to a file
+You may of course instead add `source <(npm completion)` to a file
 such as `/usr/local/etc/bash_completion.d/npm` or 
 `/etc/bash_completion.d/npm` if you have a system that will read 
 that file for you.
